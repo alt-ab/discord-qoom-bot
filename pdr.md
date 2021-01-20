@@ -21,19 +21,21 @@
 ## 6. Requirements
 >- Repl.it
 >- A Discord Account
+>- Github
 
 
 ## 7. Technology Used
 >- Discord.js
 
 ## 8. Features
->- chatting - basic conversation
->- memes - GIPHY API
->- support (sad bot + quotes)
->- DM - private issues 
->- reminder feature (reminds someone to do hw, etc at certain times)
->- answer questions about how to use Qoom
->- censor feature - warns and redacts/
+>- (list by priority)
+>- 1. memes - GIPHY API
+>- 2. answer questions about how to use Qoom
+>- 3. DM - private issues 
+>- 4. chatting - basic conversation
+>- 5. support (sad bot + quotes)
+>- 6. censor feature - warns and redacts/
+>- 7. reminder feature (reminds someone to do hw, etc at certain times)
 
 ---
 ### Our Notes: 
