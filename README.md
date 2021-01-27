@@ -1,1 +1,3 @@
-# qoom-creator-discord-bot
+# qoom-creator
+
+discord-bot
