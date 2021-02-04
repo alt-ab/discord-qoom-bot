@@ -8,15 +8,9 @@
 
 2. Install [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
 
-3. To check if running on Heroku
+3. To check if running on [Heroku Activity](https://dashboard.heroku.com/apps/discord-qoom-bot/activity)
+<br>
 (I set up Heroku through a remote git branch via git remote add heroku https://git.heroku.com/discord-qoom-bot.git. and added that app to Heroku with heroku git:remote -discord-qoom-bot)
-
-```
-//access your terminal with 
-ctrl+j
-//then type
-heroku logs --tail
-```
 
 <br>
 
