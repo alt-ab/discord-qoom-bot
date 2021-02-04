@@ -4,9 +4,9 @@
 
 ### To edit the bot online 
 
-- just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
+1. just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
 
-- To check if running on Heroku
+2. To check if running on Heroku
 
 ```
 //access your terminal with 
