@@ -14,3 +14,5 @@ npm install discord.js
 ```
 <br>
 To run it, type the command `node bot.js`
+<br>
+To check if running on Heroku run, access your terminal with `ctrl+j`, and then run `heroku logs --tail`
