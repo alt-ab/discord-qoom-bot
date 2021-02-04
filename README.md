@@ -4,14 +4,17 @@
 
 ### To edit the bot online 
 
-- just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
+1. just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
 
-- To check if running on Heroku
+2. Install [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+
+3. To check if running on Heroku
+(I set up Heroku through a remote git branch via git remote add heroku https://git.heroku.com/discord-qoom-bot.git. and added that app to Heroku with heroku git:remote -discord-qoom-bot)
 
 ```
 //access your terminal with 
 ctrl+j
-
+//then type
 heroku logs --tail
 ```
 
@@ -29,7 +32,7 @@ git clone https://github.com/alt-ab/discord-qoom-bot.git
 ```
 
 <br>
-2. Download dependencies dotenv, node.js, and discord.js (in the future will move to Docker)
+2. Download dependencies dotenv, node.js, GIPHY packager, and discord.js (in the future will move to Docker)
 
 ```
 npm init
@@ -38,6 +41,7 @@ npm install dotenv
 
 npm install discord.js
 
+npm install --save giphy-js-sdk-core
 ```
 
 <br>
