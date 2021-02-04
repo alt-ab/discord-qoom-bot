@@ -6,12 +6,14 @@
 
 1. just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
 
-2. To check if running on Heroku
+2. Install [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+
+3. To check if running on Heroku
 
 ```
 //access your terminal with 
 ctrl+j
-
+//then type
 heroku logs --tail
 ```
 
