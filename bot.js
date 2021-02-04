@@ -33,8 +33,10 @@ client.on('message', message => {
       message.channel.send(":ping_pong: pong!")
   }
   
-  if (message.content.startsWith(`${prefix}`)) {
-      giphy.search('gifs', {"q":message.content})
+  if (message.content.startsWith(`${prefix}gif`)) {
+      const content = message.content.slice(prefix.length).split(' ');
+      console.log(content);
+      giphy.search('gifs', {"q":content})
       .then((response) => {
           var totalResponses = response.data.length;
           var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
@@ -42,11 +44,12 @@ client.on('message', message => {
           message.channel.send({
               files: [responseFinal.images.fixed_height.url]
           })
-      }).catch(() => {
+      }).catch((err) => {
           message.channel.send('Error sorry');
+          console.log(err);
       })
   }
   
-};
+});
           
 client.login(process.env.DISCORD_TOKEN);

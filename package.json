@@ -1,0 +1,23 @@
+{
+  "name": "qoom-creator-discord-bot",
+  "version": "1.0.0",
+  "description": "Alternative code for [Alexa's](https://github.com/alt-ab) and [Adelene's](https://github.com/jenybear) Discord Bot for Qoom Inc.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alt-ab/qoom-creator-discord-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alt-ab/qoom-creator-discord-bot/issues"
+  },
+  "homepage": "https://github.com/alt-ab/qoom-creator-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
