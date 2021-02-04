@@ -6,10 +6,8 @@
 
 1. just edit the code straight for [this repo](https://github.com/alt-ab/discord-qoom-bot) and commit it
 
-2. Install [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+2. To check if running on [Heroku Activity](https://dashboard.heroku.com/apps/discord-qoom-bot/activity)
 
-3. To check if running on [Heroku Activity](https://dashboard.heroku.com/apps/discord-qoom-bot/activity)
-<br>
 (I set up Heroku through a remote git branch via git remote add heroku https://git.heroku.com/discord-qoom-bot.git. and added that app to Heroku with heroku git:remote -discord-qoom-bot)
 
 <br>
@@ -26,7 +24,7 @@ git clone https://github.com/alt-ab/discord-qoom-bot.git
 ```
 
 <br>
-2. Download dependencies dotenv, node.js, GIPHY packager, and discord.js (in the future will move to Docker)
+2. Download dependencies: dotenv, node.js, GIPHY packager, and discord.js (in the future will move to Docker)
 
 ```
 npm init
