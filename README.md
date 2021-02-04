@@ -1,11 +1,11 @@
 # qoom-creator
 
 Alternative code for [Alexa's](https://github.com/alt-ab) and [Adelene's](https://github.com/jenybear) Discord Bot for Qoom Inc.
+1. Clone the repo
+```git clone https://github.com/alt-ab/discord-qoom-bot.git```
 <br>
-Requires dotenv, node.js, and discord.js
+2. Download dependencies dotenv, node.js, and discord.js (in the future will move to Docker)
 ```
-git clone https://github.com/alt-ab/discord-qoom-bot.git
-
 npm init
 
 npm install dotenv
@@ -13,6 +13,13 @@ npm install dotenv
 npm install discord.js
 ```
 <br>
-To run it, type the command `node bot.js`
+3. To run locally 
+```node bot.js```
 <br>
-To check if running on Heroku run, access your terminal with `ctrl+j`, and then run `heroku logs --tail`
+4. To check if running on Heroku
+```
+//access your terminal with 
+ctrl+j
+
+heroku logs --tail
+```
