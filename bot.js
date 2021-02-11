@@ -159,7 +159,7 @@ client.on('message', message => {
         faq.addField("More Questions or Suggestions? ``qmdm``", "Other than filling out the Contact Form, you can DM us with ``qmdm`` with any of your questions!");
         faq.setThumbnail(client.user.displayAvatarURL());
         faq.setAuthor(client.user.username, client.user.displayAvatarURL());
-
+        //this is a comment
         message.channel.send(faq);
     }
 
