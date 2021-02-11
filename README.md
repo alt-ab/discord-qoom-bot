@@ -43,3 +43,18 @@ npm install --save giphy-js-sdk-core
 node bot.js
 ```
 
+<br>
+4. To get most recent code
+```
+git pull
+```
+
+<br>
+5. To push back to the GitHub file
+
+```
+git add .
+git commit -m "<put something in here>"
+git push master
+```
+
