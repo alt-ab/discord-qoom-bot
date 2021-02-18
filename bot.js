@@ -29,12 +29,26 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
-    if (message.content.includes(`qoom`)) {
+    if (message.content.includes(`qoom `)) {
 
         message.react('😄');
+
+        const heart = "heart";
+        giphy.search('gifs', {"q":heart})
+        .then((response) => {
+            var totalResponses = response.data.length;
+            var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+            var responseFinal = response.data[responseIndex];
+            message.channel.send({
+                files: [responseFinal.images.fixed_height.url]
+            })
+        }).catch((err) => {
+            message.channel.send('Error sorry');
+            console.log(err);
+        })
     }
 
-    if (message.content.includes(`uh`) || message.content.includes("um")) {
+    if (message.content.includes(`uh `) || message.content.includes("um ")) {
 
         message.react('👎');
         
