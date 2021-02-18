@@ -29,7 +29,7 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
-    if (message.content.includes(`qoom `)) {
+    if (message.content.includes("qoom ")) {
 
         message.react('😄');
 
@@ -48,7 +48,7 @@ client.on('message', message => {
         })
     }
 
-    if (message.content.includes(`uh `) || message.content.includes("um ")) {
+    if (message.content.includes("uh ") || message.content.includes("um ")) {
 
         message.react('👎');
         
