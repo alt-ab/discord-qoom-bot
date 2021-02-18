@@ -29,11 +29,7 @@ git clone https://github.com/alt-ab/discord-qoom-bot.git
 ```
 npm init
 
-npm install dotenv
-
-npm install discord.js
-
-npm install --save giphy-js-sdk-core
+npm i
 ```
 
 <br>
