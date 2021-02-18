@@ -29,7 +29,10 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
-    if (message.content.includes("qoom ")) {
+    const args1 = message.content.slice(prefix.length).trim().split(/ +/);
+	const command1 = args1.shift().toLowerCase();
+
+    if (command1 === "qoom") {
 
         message.react('😄');
 
@@ -48,7 +51,7 @@ client.on('message', message => {
         })
     }
 
-    if (message.content.includes("uh ") || message.content.includes("um ")) {
+    if (command1 === "um" || command1 === "uh") {
 
         message.react('👎');
         
