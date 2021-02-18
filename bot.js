@@ -29,6 +29,32 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
+    if (message.content.includes(`qoom`)) {
+
+        message.react('😄');
+    }
+
+    if (message.content.includes(`uh`) || message.content.includes("um")) {
+
+        message.react('👎');
+        
+        const bad = "bad";
+        giphy.search('gifs', {"q":bad})
+        .then((response) => {
+            var totalResponses = response.data.length;
+            var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+            var responseFinal = response.data[responseIndex];
+            message.channel.send({
+                files: [responseFinal.images.fixed_height.url]
+            })
+        }).catch((err) => {
+            message.channel.send('Error sorry');
+            console.log(err);
+        })
+    }
+    
+    
+
     if (message.content.startsWith("Qoombot") || message.content.startsWith("qoombot")) {
         let explain = new Discord.MessageEmbed();
         
@@ -41,11 +67,17 @@ client.on('message', message => {
         explain.addField("Other Commands", "For our fun other commands, try ``qmcommands``.");
         explain.setThumbnail(client.user.displayAvatarURL());
         explain.setAuthor(client.user.username, client.user.displayAvatarURL());
-  
+    
         message.channel.send(explain);
     }
 
-    if (message.content.startsWith(`${prefix}qoom`)) {
+
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const command = args.shift().toLowerCase();
+
+    if (command==="qoom") {
 
         let qoom = new Discord.MessageEmbed();
 
@@ -68,7 +100,7 @@ client.on('message', message => {
     
     }
 
-    if (message.content.startsWith(`${prefix}inspired`)) {
+    if (command==="inspired") {
         let inspired = new Discord.MessageEmbed();
 
         var link2 = "https://app.qoom.io/qoom-of-the-week/home.md?cid=yt001";
@@ -91,7 +123,7 @@ client.on('message', message => {
         message.channel.send(inspired);
     }
 
-    if (message.content.startsWith(`${prefix}help`)) {
+    if (command==="help") {
         let help = new Discord.MessageEmbed();
 
         var link8 = "https://www.qoom.io/help";
@@ -110,7 +142,7 @@ client.on('message', message => {
         message.channel.send(help);
     }
 
-    if (message.content.startsWith(`${prefix}socials`)) {
+    if (command==="socials") {
         let social = new Discord.MessageEmbed();
 
         var link9 = "https://www.instagram.com/qoomspace/";
@@ -130,7 +162,7 @@ client.on('message', message => {
         message.channel.send(social);
     }
 
-    if (message.content.startsWith(`${prefix}code`)) {
+    if (command==="code") {
         let code = new Discord.MessageEmbed();
 
         var link5 = "https://www.qoom.io/subscribe/gotocodingspace";
@@ -148,7 +180,7 @@ client.on('message', message => {
         message.channel.send(code);
     }
   
-    if (message.content.startsWith(`${prefix}faq`)) {
+    if (command==="faq") {
         let faq = new Discord.MessageEmbed();
 
         faq.setTitle(":robot: Frequently Asked Questions");
@@ -163,32 +195,52 @@ client.on('message', message => {
         message.channel.send(faq);
     }
 
-    if (message.content.includes (`${prefix}dm`)) {
+    if (command==="dm") {
         message.author.send(`Send us your suggestions or questions here! And we will get back to you as we can!`);
         console.log(message.response);
       }
 
 
-  if (message.content.startsWith(`${prefix}ping`)) {
-      message.channel.send(":ping_pong: pong!");
-  }
+    if (command==="ping") {
+        message.channel.send(":ping_pong: pong!");
+    }
   
-  if (message.content.startsWith(`${prefix}gif`)) {
-      const content = message.content.slice(prefix.length).split(' ');
-      giphy.search('gifs', {"q":content})
-      .then((response) => {
-          var totalResponses = response.data.length;
-          var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
-          var responseFinal = response.data[responseIndex];
-          message.channel.send({
-              files: [responseFinal.images.fixed_height.url]
-          })
-      }).catch((err) => {
-          message.channel.send('Error sorry');
-          console.log(err);
-      })
-  }
-  
+    if (command==="gif") {
+        const content = message.content.slice(prefix.length).split(' ');
+        giphy.search('gifs', {"q":content})
+        .then((response) => {
+            var totalResponses = response.data.length;
+            var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+            var responseFinal = response.data[responseIndex];
+            message.channel.send({
+                files: [responseFinal.images.fixed_height.url]
+            })
+        }).catch((err) => {
+            message.channel.send('Error sorry');
+            console.log(err);
+        })
+    }
+    
+    if (command === 'delete') {
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) {
+            message.channel.send("You do not have permissions!");
+
+            return
+        }
+        const amount = parseInt(args[0]) + 1;
+
+        if (isNaN(amount)) {
+            return message.reply('that doesn\'t seem to be a valid number.');
+        } else if (amount <= 1 || amount > 100) {
+            return message.reply('you need to input a number between 1 and 99.');
+        }
+
+        message.channel.bulkDelete(amount, true)
+        .catch(err => {
+            console.error(err);
+        })
+        message.channel.send("Done! Deleted " + amount);
+    }
 });
           
 client.login(process.env.DISCORD_TOKEN);
