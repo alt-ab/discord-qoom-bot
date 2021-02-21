@@ -75,7 +75,7 @@ client.on('message', message => {
     if (message.content.startsWith("Qoombot") || message.content.startsWith("qoombot")) {
         let explain = new Discord.MessageEmbed();
         
-        explain.setTitle(":robot: Qoombot");
+        explain.setTitle(":robot:  Qoombot");
         explain.setColor('00ffcc');
         explain.setAuthor(client.user.username, client.user.displayAvatarURL());
         explain.setDescription("**Hello, I am the Qoom bot! Qoom is a visual, collaborative, and online development environment that supports many languages. We hope you enjoy!**");
@@ -100,16 +100,16 @@ client.on('message', message => {
 
         var link1 = "https://www.qoom.io/";
 
-        qoom.setTitle(":robot: Qoom");
+        qoom.setTitle(":robot:  Qoom");
         qoom.setColor('00ffcc');
         qoom.setAuthor(client.user.username, client.user.displayAvatarURL());
         qoom.setDescription("**Here are some commands to get to know us more!**");
-        qoom.addField("Qoom Website", "Here is the link to our website: " + link1);
+        qoom.addField("Official Qoom Website: ", link1);
         qoom.addField("START CODING ``qmcode``", "Go to your online QOOM IDE and get started coding!");
-        qoom.addField("GET INSPIRED by QOOM ``qminspired``", "Look for inspiration or want to see what you can do with QOOM.");
-        qoom.addField("GET HELP with QOOM ``qmhelp``", "Check out guides on how to get started and various projects or submit questions for help!");
+        qoom.addField("GET INSPIRED by QOOM ``qminspired``", "Look for inspiration see what you can do with QOOM.");
+        qoom.addField("GET HELP with QOOM ``qmhelp``", "Check out guides on to get started on various projects OR submit questions for help!");
         qoom.addField("KEEP UP with QOOM ``qmsocials``", "Follow our socials for more updates and amazing resources!");
-        qoom.addField("FAQ ``qmfaq``", "If you still have any questions or want to send suggestions.");
+        qoom.addField("FAQ ``qmfaq``", "For additional questions and suggestions.");
         qoom.setThumbnail(client.user.displayAvatarURL());
         qoom.setAuthor(client.user.username, client.user.displayAvatarURL());
 
