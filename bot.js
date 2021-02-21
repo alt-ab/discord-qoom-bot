@@ -54,8 +54,27 @@ client.on('message', message => {
 
         message.react('👎');
         
-        const bad = "kermit";
+        const bad = "kermit bad";
         giphy.search('gifs', {"q":bad})
+        .then((response) => {
+            var totalResponses = response.data.length;
+            var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+            var responseFinal = response.data[responseIndex];
+            message.channel.send({
+                files: [responseFinal.images.fixed_height.url]
+            })
+        }).catch((err) => {
+            message.channel.send('Error sorry');
+            console.log(err);
+        })
+    }
+
+    if (args1.includes("hi") || args1.includes("hello") || args1.includes("hii")) {
+
+        message.react('👎');
+        
+        const hello = "hello";
+        giphy.search('gifs', {"q":hello})
         .then((response) => {
             var totalResponses = response.data.length;
             var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
@@ -225,6 +244,7 @@ client.on('message', message => {
         cmd.addField("Updates", "Another feature we are working on is automatically bringing Qoom's Instagram posts right here to Discord!");
         cmd.addField("🌟Gifs and Stickers", "Try ``qmgif <word>`` to have Qoombot send a gif! And try ``qmstick <word>`` to send a sticker!");
         cmd.addField("Delete", "To those who have the permissions, you can try ``qmdelete <number>`` to delete that number of messages from the channel! Helps to clean up the clutter");
+        cmd.addField("Public Speaking", "You may have noticed that anytime you say \"uh\" or \"um\", you get sent a kermit meme! ")
         cmd.setThumbnail(client.user.displayAvatarURL());
         cmd.setAuthor(client.user.username, client.user.displayAvatarURL());
 
