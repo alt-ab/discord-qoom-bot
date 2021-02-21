@@ -68,8 +68,6 @@ client.on('message', message => {
             console.log(err);
         })
     }
-    
-    
 
     if (message.content.startsWith("Qoombot") || message.content.startsWith("qoombot")) {
         let explain = new Discord.MessageEmbed();
