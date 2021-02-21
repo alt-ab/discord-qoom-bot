@@ -29,10 +29,9 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
-    const args1 = message.content.slice(prefix.length).trim().split(/ +/);
-	const command1 = args1.shift().toLowerCase();
+    const args1 = message.content.split(/ +/);
 
-    if (command1 === "qoom") {
+    if (args1.includes("qoom")) {
 
         message.react('😄');
 
@@ -50,12 +49,12 @@ client.on('message', message => {
             console.log(err);
         })
     }
-
-    if (command1 === "um" || command1 === "uh") {
+    
+    if (args1.includes("uh") || args1.includes("um") || message.content.includes(" um") || message.content.includes(" uh")) {
 
         message.react('👎');
         
-        const bad = "bad";
+        const bad = "kermit";
         giphy.search('gifs', {"q":bad})
         .then((response) => {
             var totalResponses = response.data.length;
@@ -115,7 +114,7 @@ client.on('message', message => {
 
         message.channel.send(qoom);
     
-    }
+    }    
 
     if (command==="inspired") {
         let inspired = new Discord.MessageEmbed();
@@ -205,6 +204,7 @@ client.on('message', message => {
         faq.setAuthor(client.user.username, client.user.displayAvatarURL());
         faq.setDescription("**For any other frequently asked questions and suggestions for Qoom!**");
         faq.addField("What is an IDE?", "An IDE stands for integrated development environment, which is basically a loaded text editor to help you code like Qoom.io!");
+        //! TO DO
         faq.addField("More Questions or Suggestions? ``qmdm``", "Other than filling out the Contact Form, you can DM us with ``qmdm`` with any of your questions!");
         faq.setThumbnail(client.user.displayAvatarURL());
         faq.setAuthor(client.user.username, client.user.displayAvatarURL());
@@ -212,16 +212,38 @@ client.on('message', message => {
         message.channel.send(faq);
     }
 
+    if (command==="commands") {
+
+        let cmd = new Discord.MessageEmbed();
+        cmd.setTitle(":robot: Qoom");
+        cmd.setColor('00ffcc');
+        cmd.setAuthor(client.user.username, client.user.displayAvatarURL());
+        cmd.setDescription("**Here are my other commands and features we are working on!**");
+        //!TO DO
+        cmd.addField("Direct Messaging", "We are currently working on a *direct messaging command* if you have any other questions for us that you do not want to send through email!");
+        //? OTHER TO DO - TIMER
+        cmd.addField("Timer", "Need help keeping on track? We are working on a *timer feature* to help you stay on time!");
+        //* INSTAGRAM
+        cmd.addField("Updates", "Another feature we are working on is automatically bringing Qoom's Instagram posts right here to Discord!");
+        cmd.addField("🌟Gifs and Stickers", "Try ``qmgif <word>`` to have Qoombot send a gif! And try ``qmstick <word>`` to send a sticker!");
+        cmd.addField("Delete", "To those who have the permissions, you can try ``qmdelete <number>`` to delete that number of messages from the channel! Helps to clean up the clutter");
+        cmd.setThumbnail(client.user.displayAvatarURL());
+        cmd.setAuthor(client.user.username, client.user.displayAvatarURL());
+
+        message.channel.send(cmd);
+    
+    }
+
+    //! TO DO 
     if (command==="dm") {
         message.author.send(`Send us your suggestions or questions here! And we will get back to you as we can!`);
         console.log(message.response);
-      }
-
-
-    if (command==="ping") {
-        message.channel.send(":ping_pong: pong!");
     }
-  
+
+    //? TIMER
+
+    //* INSTAGRAM    
+
     if (command==="gif") {
         const content = message.content.slice(prefix.length).split(' ');
         giphy.search('gifs', {"q":content})
