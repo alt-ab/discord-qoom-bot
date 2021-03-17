@@ -111,32 +111,6 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if (command === "timer") {
-
-        let time = args[0]
-        if (!time) return message.reply("How long do you want your alarm to be set? ")
-        if (ms(time() > ms("1d"))) return message.reply("You can't set an alarm longer than 1 day.")
-
-        let reason = args.slice(1).join(' ')
-        if (!reason) return message.reply("Reason for alarm")
-
-        const embed = new Discord.MessageEmbed()
-            .setAuthor(`${message.author.tag} Alarm`, message.author.displayAvatarURL())
-            .setColor("RANDOM")
-            .setDescription(`Time: \`${time}\`\nReason: \`${reason}\``)
-            .setTimestamp()
-        message.channel.send(embed)
-
-        setTimeout(() => {
-            const embed = new Discord.MessageEmbed()
-                .setAuthor(`${message.author.tag} Your alarm has ended.`, message.author.displayAvatarURL())
-                .setColor("RANDOM")
-                .setDescription(`Time: \`${time}\`\nReason: \`${reason}\`\nAlarm set in server: \`${message.guild.name}\``)
-                .setTimestamp()
-            message.author.send(embed)
-        }, ms(time))
-    }
-
     if (command === "qoom") {
 
         let qoom = new Discord.MessageEmbed();
@@ -266,7 +240,7 @@ client.on('message', message => {
         //!TO DO
         cmd.addField("Direct Messaging", "We are currently working on a *direct messaging command* if you have any other questions for us that you do not want to send through email!");
         //? OTHER TO DO - TIMER
-        cmd.addField("Timer", "Need help keeping on track? We are working on a *timer feature* to help you stay on time!");
+        cmd.addField("Timer", `Need help keeping on track? We are working on a *timer feature* to help you stay on time! Usage: ${prefix}timer [time s/m/h] [reason]`);
         //* INSTAGRAM
         cmd.addField("Updates", "Another feature we are working on is automatically bringing Qoom's Instagram posts right here to Discord!");
         cmd.addField("🌟Gifs and Stickers", "Try ``qmgif <word>`` to have Qoombot send a gif! And try ``qmstick <word>`` to send a sticker!");
@@ -279,13 +253,38 @@ client.on('message', message => {
 
     }
 
+    if (command === "timer") {
+
+        let time = args[0]
+        if (!time) return message.reply("You need to specify the time with a number and the duration. For example, `5s` for 5 seconds!")
+        if (ms(time) > ms("1d")) return message.reply("You can't set an alarm longer than 1 day.")
+
+        let reason = args.slice(1).join(' ')
+        if (!reason) return message.reply("Reason for alarm")
+
+        const embed = new Discord.MessageEmbed()
+            .setAuthor(`${message.author.tag} Alarm`, message.author.displayAvatarURL())
+            .setColor("00ffcc")
+            .setDescription(`Time: \`${time}\`\nReason: \`${reason}\``)
+            .setTimestamp()
+        message.channel.send(embed)
+
+        setTimeout(() => {
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(`${message.author.tag} Your alarm has ended.`, message.author.displayAvatarURL())
+                .setColor("00ffcc")
+                .setDescription(`Time: \`${time}\`\nReason: \`${reason}\`\nAlarm set in server: \`${message.guild.name}\``)
+                .setTimestamp()
+            message.channel.send(embed),
+            message.author.send(embed)
+        }, ms(time))
+    }
+
     //! TO DO 
     if (command === "dm") {
         message.author.send(`Send us your suggestions or questions here! And we will get back to you as we can!`);
         console.log(message.response);
     }
-
-    //? TIMER
 
     //* INSTAGRAM    
 
