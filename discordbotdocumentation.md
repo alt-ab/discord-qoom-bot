@@ -15,6 +15,11 @@ How to Make a Discord Bot (QOOM Style)
 - Excitement to Learn!
 - [Node.js installed](http://nodejs.org/)
 
+**Resources**
+- [Official Discord guide](https://discordjs.guide/creating-your-bot/#creating-the-bot-file)
+- [Great two part tutorial on creating a Discord bot and hosting](https://medium.com/davao-js/tutorial-creating-a-simple-discord-bot-9465a2764dc0)
+- [Another tutorial for a Discord bot with cool pyramid feature](https://workshops.hackclub.com/pyramid_discord_bot/)
+
 
 ## Instructions
 ### Create Bot (and Test Server) in Discord
