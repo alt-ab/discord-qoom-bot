@@ -83,6 +83,17 @@ client.on('message', (msg) => {
   const channel = msg.channel as Discord.TextChannel
   channel.send('Hi there!')
 })
+
+//Passing your Discord token
+client.login(process.env.DISCORD_TOKEN);
 ```
+2. And you can run your bot locally with `node bot.js`
+
+## Heroku hosting check in
+Hi there! Quick check in!
+Let's configure your Heroku account for hosting your bot!
+1. You need push your code into a GitHub repository for Heroku to read it
+
+
 ### First Feature: Giphy Meme Search
 ### Second Feature: Timer w/ ms package
