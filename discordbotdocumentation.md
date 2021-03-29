@@ -1,4 +1,4 @@
-How to Make a Discord Bot (QOOM Style)
+How to Make a Discord Bot
 ======
 ## You will learn:
 - _How to make a Discord bot (obviously)_
