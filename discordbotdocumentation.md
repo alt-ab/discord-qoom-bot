@@ -8,7 +8,7 @@ How to Make a Discord Bot (QOOM Style)
 
 ## Prerequisites and Resources:
 
-- [QOOM Account!](qoom.io)
+- [QOOM Account](qoom.io)!
 - [Discord Account](https://discord.com/)
 - [Giphy Account (feature)](https://developers.giphy.com/docs/api#quick-start-guide)
 - [Heroku Account (for hosting)](https://devcenter.heroku.com/start)
@@ -30,7 +30,7 @@ How to Make a Discord Bot (QOOM Style)
 4. On the left there will be some options -- select "Bot", then "Add Bot", and name the bot. 
 5. Save the changes and you now have a registered bot.
 6. To connect the bot to your server, go to "OAuth2", check the "bot" checkbox and then copy the URL to open in another tab. Click "Authorize" and select the server you made.
-![image](https://user-images.githubusercontent.com/66260572/112778666-00f88f00-9013-11eb-9340-c84da0747347.png)
+![image](https://user-images.githubusercontent.com/66260572/112778789-4cab3880-9013-11eb-8697-03588a03f351.png)
 - Later, you will need the token from this page to connect the code with the bot later.
 
 ### Setting up coding environment 
@@ -51,10 +51,8 @@ npm install ms
 5. Create `.env` file and write your *bot token from the above directions* there in the format
 ```
 DISCORD_TOKEN=<bot-token-here>
-```
-6. Then in the same file, paste your Giphy Developers token 
-```
 GIPHY_TOKEN=<giphy-token-here>
+prefix=$
 ```
 7. In your `Procfile` - which is the file Heroku must read to host - insert 
 ```
@@ -105,7 +103,63 @@ client.login(process.env.DISCORD_TOKEN);
 >And you can run your bot locally with `node bot.js`
 
 ### First Feature: Giphy Meme Search
+Ok now the hard part is over!
+Now we need to have it so when our bot recognizes a specific calling, it will send out a gif!
+1. First, inside the messages function, we'll have it so the bot will register when its prefix is called 
+```
+if (message.content.includes(`${prefix}gif)) {
+    ...
+}
+```
+2. Then, inside the if statement, we want our bot to read the content sent out with the command, for example, `$gif dogs`, and send a dog gif!
+```
+//inside the function add...
+    const content = message.content.slice(prefix.length).split(' ');
+    giphy.search('gifs', { "q": content })
+```
+3. Then we want to send that content to the Giphy API, which returns a number of files of gifs, so the bot needs to randomly pick one!
+```
+//again in the function add...
+.then((response) => {
+    var totalResponses = response.data.length;
+    var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+    var responseFinal = response.data[responseIndex];
+    message.channel.send({
+        files: [responseFinal.images.fixed_height.url]
+    })
+```
+4. A good idea is add a catch function in order to catch any errors 
+```
+//and finally the add...
+.catch((err) => {
+    message.channel.send('Error sorry');
+    console.log(err);
+})
+```
+In total, your `bot.js` message function should look like this:
+```
+//Listening for "message" event, and sending your first message!
+client.on('message', (message) => {
+  mesage.channel.send('Hi there!')
+  
+  if (message.content.includes(`${prefix}gif)) {
+        const content = message.content.slice(prefix.length).split(' ');
+        giphy.search('gifs', { "q": content })
+            .then((response) => {
+                var totalResponses = response.data.length;
+                var responseIndex = Math.floor((Math.random() * 10) + 1) % totalResponses;
+                var responseFinal = response.data[responseIndex];
+                message.channel.send({
+                    files: [responseFinal.images.fixed_height.url]
+                })
+            }).catch((err) => {
+                message.channel.send('Error sorry');
+                console.log(err);
+            })
+    }
+})
 
+```
 
 ### Second Feature: Timer w/ ms package
 
