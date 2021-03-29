@@ -30,8 +30,8 @@ How to Make a Discord Bot (QOOM Style)
 4. On the left there will be some options -- select "Bot", then "Add Bot", and name the bot. 
 5. Save the changes and you now have a registered bot.
 6. To connect the bot to your server, go to "OAuth2", check the "bot" checkbox and then copy the URL to open in another tab. Click "Authorize" and select the server you made.
->![image](https://user-images.githubusercontent.com/66260572/112403255-7814e700-8ce4-11eb-8db1-53687808d781.png)
->- Later, you will need the token from this page to connect the code with the bot later.
+![image](https://user-images.githubusercontent.com/66260572/112778666-00f88f00-9013-11eb-9340-c84da0747347.png)
+- Later, you will need the token from this page to connect the code with the bot later.
 
 ### Setting up coding environment 
 Great job! First we will learn how to set up the Discord bot environment
