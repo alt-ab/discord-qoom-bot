@@ -47,10 +47,8 @@ npm install discord.js
 npm install --save giphy-js-sdk-core
 npm install ms
 ```
-You should have `package.json` and `package-lock.json` files as well
-4. Create `bot.js`, `.env`, and `Procfile` files
-Do so with `touch <file-name>` or however the IDE is set up
-5. In your `.env` file, write your *bot token from the above directions* there in the format
+4. In your folder, create `bot.js`, `.env`, `Procfile`, and `.gitignore` files
+5. Create `.env` file and write your *bot token from the above directions* there in the format
 ```
 DISCORD_TOKEN=<bot-token-here>
 ```
@@ -62,9 +60,14 @@ GIPHY_TOKEN=<giphy-token-here>
 ```
 worker: node bot.js
 ```
+8. In your `.gitignore` file the following. **Please note that `.env` is vitally important to add**
+```
+.env
+node_modules
+```
 >Now you are finally ready to start coding your bot in `bot.js`!
 ### Coding your first Discord bot message
-1. For the first code ever (woohoo!), insert this!
+1. For the first code ever (woohoo!), insert this your `bot.js` file!
 ```
 //handling Discord, and dotenv, and ms 
 require('dotenv').config();
@@ -99,7 +102,7 @@ client.on('message', (message) => {
 //Passing your Discord token
 client.login(process.env.DISCORD_TOKEN);
 ```
-2. And you can run your bot locally with `node bot.js`
+>And you can run your bot locally with `node bot.js`
 
 ### First Feature: Giphy Meme Search
 
