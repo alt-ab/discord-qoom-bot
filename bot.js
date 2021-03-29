@@ -72,7 +72,7 @@ client.on('message', message => {
 
     if (args1.includes("hi") || args1.includes("hello") || args1.includes("hii")) {
 
-        message.react('👎');
+        message.react('👋');
 
         const hello = "hello";
         giphy.search('gifs', { "q": hello })
