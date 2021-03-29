@@ -9,12 +9,12 @@ How to Make a Discord Bot (QOOM Style)
 ## Prerequisites and Resources:
 
 - [QOOM Account!](qoom.io)
-- Discord Account
+- [Discord Account](https://discord.com/)
 - [Giphy Account (feature)](https://developers.giphy.com/docs/api#quick-start-guide)
 - [Heroku Account (for hosting)](https://devcenter.heroku.com/start)
-- Excitement to Learn!
 - [Node.js installed](http://nodejs.org/)
 - [GitHub account](https://github.com/)
+https://discord.com/
 
 **Resources**
 - [Official Discord guide](https://discordjs.guide/creating-your-bot/#creating-the-bot-file)
