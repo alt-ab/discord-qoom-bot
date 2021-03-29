@@ -14,6 +14,7 @@ How to Make a Discord Bot (QOOM Style)
 - [Heroku Account (for hosting)](https://devcenter.heroku.com/start)
 - Excitement to Learn!
 - [Node.js installed](http://nodejs.org/)
+- [GitHub account](https://github.com/)
 
 **Resources**
 - [Official Discord guide](https://discordjs.guide/creating-your-bot/#creating-the-bot-file)
@@ -39,16 +40,17 @@ Great job! First we will learn how to set up the Discord bot environment
 mkdir <discord-bot>
 ```
 2. Set up your npm (node.js handle) project with `npm init -y`
-3. Install all dependenies individually with 
+3. Install dependenies individually with 
 ```
 npm install dotenv
 npm install discord.js
 npm install --save giphy-js-sdk-core
+npm install ms
 ```
-You should have `package.json` and `package-lock.json` files
+You should have `package.json` and `package-lock.json` files as well
 4. Create `bot.js`, `.env`, and `Procfile` files
-Do so with `touch <file-name>`
-5. In your `.env` file, paste your *bot token from the above directions* there in the format
+Do so with `touch <file-name>` or however the IDE is set up
+5. In your `.env` file, write your *bot token from the above directions* there in the format
 ```
 DISCORD_TOKEN=<bot-token-here>
 ```
@@ -64,24 +66,34 @@ worker: node bot.js
 ### Coding your first Discord bot message
 1. For the first code ever (woohoo!), insert this!
 ```
-// Imports dotenv and discord modules
-import dotenv from 'dotenv'
-import Discord from 'discord.js'
+//handling Discord, and dotenv, and ms 
+require('dotenv').config();
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const ms = require("ms")
 
-// Read config from .env and login to the Discord API
-dotenv.config()
-const client = new Discord.Client()
-client.login(process.env.TOKEN)
-
-// Listen for a 'ready' event and execute a callback when it's fired
-client.on('ready', () => {
-  console.log('Ready!')
+//handling Giphy
+var GphApiClient = require('giphy-js-sdk-core');
+const GIPHY_TOKEN = process.env.GIPHY_TOKEN;
+giphy = GphApiClient(GIPHY_TOKEN);
 })
 
-// Listen for a 'message' event and execute a callback when it's fired
-client.on('message', (msg) => {
-  const channel = msg.channel as Discord.TextChannel
-  channel.send('Hi there!')
+//Calling bot's state
+client.once('ready', () => {
+    console.log(`Blast off!`);
+});
+
+client.once('reconnecting', () => {
+    console.log(`Reconnecting!`);
+});
+
+client.once('disconnect', () => {
+    console.log(`Disconnected!`);
+});
+
+//Listening for "message" event, and sending your first message!
+client.on('message', (message) => {
+  mesage.channel.send('Hi there!')
 })
 
 //Passing your Discord token
@@ -89,11 +101,52 @@ client.login(process.env.DISCORD_TOKEN);
 ```
 2. And you can run your bot locally with `node bot.js`
 
-## Heroku hosting check in
+### First Feature: Giphy Meme Search
+
+
+### Second Feature: Timer w/ ms package
+
+# Hosting!
+## Hosting pt 1: Creating a GitHub respository
 Hi there! Quick check in!
 Let's configure your Heroku account for hosting your bot!
-1. You need push your code into a GitHub repository for Heroku to read it
+You need push your code into a GitHub repository for Heroku to read it.
+1. First, create an *empty* repository on Github. More documentation can be found [here](https://docs.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line)
+2. Title your repository whatever you like! A suggestion would be `discord-giphy-bot`!![image](https://user-images.githubusercontent.com/66260572/112776808-a1988000-900e-11eb-8d32-2f851a52103b.png)
+3. Also! Grab GitHub respository's URL ![image](https://user-images.githubusercontent.com/66260572/112776890-d0aef180-900e-11eb-9929-97cc40e40b3d.png)
+---
+1. Next you want to go to your terminal and intialize your local directory as a Git respository
+```git init -b main```
+2. Then, add all files to the respository
+```git add .```
+3. And, commit the staged changes to GitHub
+```git commit -m "First commit!"```
+4. Next grab your GitHub respository's URL at the top of your page, if you have not yet, and paste that in 
+```git remote add origin <REMOTE_URL> //Sets up new remote branch```
+5. And verify that branch!
+```git remote -v ```
+6. Then push your changes!
+```git push -u origin main //This pushes your changes specifically up by the origin branch```
 
+In the future for commiting local edits to your GitHub, use 
 
-### First Feature: Giphy Meme Search
-### Second Feature: Timer w/ ms package
+```
+git add .
+git commit -m "message"
+git push
+```
+## Hosting pt. 2: Setting up Heroku
+Now Heroku can actually read and host your code!
+1. In case you have not done it already, set up a Heroku account! You may have to verify your email
+2. And install the [Heroku command line](https://devcenter.heroku.com/articles/heroku-cli)
+3. Next select the `new` button and `new app` on the top right of your dashboard or if this is your first time using Heroku, select `Create new app` option
+4. Name your app the same new your GitHub repository is! (It helps with organization)
+5. Go to the Settings tab, and scroll down to hit `Reveal Config Vars`![image](https://user-images.githubusercontent.com/66260572/112776639-38187180-900e-11eb-9ee5-e33f30449a55.png)
+
+5. There, reference your `.env` file, and paste in your API and Discord keys
+6. Next, you want to head over to the Deploy tab, and choose the `Connect to GitHub` option![image](https://user-images.githubusercontent.com/66260572/112776973-fa681880-900e-11eb-9368-e420b7b2056e.png)
+
+8. From there you want to sign into your Github and connect your repository!
+
+A good tip to track how Heroku is handling your code, is to run `heroku logs --tail` 
+
