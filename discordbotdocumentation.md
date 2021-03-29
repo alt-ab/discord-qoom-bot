@@ -14,7 +14,7 @@ How to Make a Discord Bot (QOOM Style)
 - [Heroku Account (for hosting)](https://devcenter.heroku.com/start)
 - [Node.js installed](http://nodejs.org/)
 - [GitHub account](https://github.com/)
-https://discord.com/
+- And most importantly, an excitement to Learn!
 
 **Resources**
 - [Official Discord guide](https://discordjs.guide/creating-your-bot/#creating-the-bot-file)
@@ -168,5 +168,5 @@ Now Heroku can actually read and host your code!
 
 8. From there you want to sign into your Github and connect your repository!
 
-A good tip to track how Heroku is handling your code, is to run `heroku logs --tail` 
+>A good tip to track how Heroku is handling your code, is to run `heroku logs --tail` 
 
