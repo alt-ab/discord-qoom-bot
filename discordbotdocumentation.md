@@ -116,17 +116,34 @@ You need push your code into a GitHub repository for Heroku to read it.
 3. Also! Grab GitHub respository's URL ![image](https://user-images.githubusercontent.com/66260572/112776890-d0aef180-900e-11eb-9929-97cc40e40b3d.png)
 ---
 1. Next you want to go to your terminal and intialize your local directory as a Git respository
-```git init -b main```
+```
+git init -b main
+```
+
 2. Then, add all files to the respository
-```git add .```
+```
+git add .
+```
+
 3. And, commit the staged changes to GitHub
-```git commit -m "First commit!"```
+```
+git commit -m "First commit!"
+```
+
 4. Next grab your GitHub respository's URL at the top of your page, if you have not yet, and paste that in 
-```git remote add origin <REMOTE_URL> //Sets up new remote branch```
+```
+git remote add origin <REMOTE_URL> //Sets up new remote branch
+```
+
 5. And verify that branch!
-```git remote -v ```
+```
+git remote -v 
+```
+
 6. Then push your changes!
-```git push -u origin main //This pushes your changes specifically up by the origin branch```
+```
+git push -u origin main //This pushes your changes specifically up by the origin branch
+```
 
 In the future for commiting local edits to your GitHub, use 
 
