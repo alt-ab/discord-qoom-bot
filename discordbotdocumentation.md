@@ -95,6 +95,11 @@ client.once('disconnect', () => {
 //Listening for "message" event, and sending your first message!
 client.on('message', (message) => {
   mesage.channel.send('Hi there!')
+  
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
 })
 
 //Passing your Discord token
@@ -162,6 +167,81 @@ client.on('message', (message) => {
 ```
 
 ### Second Feature: Timer w/ ms package
+Alright now let's work on the timer feature!
+1. Go back into the message function and add another if statement, this time the bot should be looking for a message containing "timer"
+```
+if (message.content.includes(`${prefix}timer)) {
+    ...
+}
+```
+2. Next, the program needs to break the returning message array into identifying features: time for alarm and reason
+```
+let time = args[0]
+//Here, the bot returns a message if the user does not specify a time
+if (!time) return message.reply("You need to specify the time with a number and the duration. For example, `5s` for 5 seconds!")
+//And if they do not add a unit to the integer
+if (ms(time) > ms("1d")) return message.reply("You can't set an alarm longer than 1 day.")
+
+let reason = args.slice(1).join(' ')
+if (!reason) return message.reply("Reason for alarm")
+```
+3. Then, create an embed, which another way to send Discord messages
+```
+const embed = new Discord.MessageEmbed()
+    //The below code is adding more characteristics to the embed
+    .setAuthor(`${message.author.tag} Alarm`, message.author.displayAvatarURL())
+    .setColor("00ffcc")
+    //Here, the program is referencing the time and reason that was given by the author
+    .setDescription(`Time: \`${time}\`\nReason: \`${reason}\``)
+    .setTimestamp()
+message.channel.send(embed)
+```
+4. Now, the last part is to have the bot send out a message after the given time. Because of ms, that part is basically done in two lines
+```
+setTimeout(() => {
+...
+},ms(time))
+```
+5. And inside that, the bot will send another embed to the user when the timer is over
+```
+const embed = new Discord.MessageEmbed()
+    .setAuthor(`${message.author.tag} Your alarm has ended.`, message.author.displayAvatarURL())
+    .setColor("00ffcc")
+    .setDescription(`Time: \`${time}\`\nReason: \`${reason}\`\nAlarm set in server: \`${message.guild.name}\``)
+    .setTimestamp()
+message.channel.send(embed),
+message.author.send(embed)
+```
+To summarize, your code for the timer feature should look like this!
+```
+if (message.content.includes(`${prefix}timer)) {
+
+        let time = args[0]
+        if (!time) return message.reply("You need to specify the time with a number and the duration. For example, `5s` for 5 seconds!")
+        if (ms(time) > ms("1d")) return message.reply("You can't set an alarm longer than 1 day.")
+
+        let reason = args.slice(1).join(' ')
+        if (!reason) return message.reply("Reason for alarm")
+
+        const embed = new Discord.MessageEmbed()
+            .setAuthor(`${message.author.tag} Alarm`, message.author.displayAvatarURL())
+            .setColor("00ffcc")
+            .setDescription(`Time: \`${time}\`\nReason: \`${reason}\``)
+            .setTimestamp()
+        message.channel.send(embed)
+
+        setTimeout(() => {
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(`${message.author.tag} Your alarm has ended.`, message.author.displayAvatarURL())
+                .setColor("00ffcc")
+                .setDescription(`Time: \`${time}\`\nReason: \`${reason}\`\nAlarm set in server: \`${message.guild.name}\``)
+                .setTimestamp()
+            message.channel.send(embed),
+            message.author.send(embed)
+        }, ms(time))
+    }
+```
+And remember, that should all be inside the message function!
 
 # Hosting!
 ## Hosting pt 1: Creating a GitHub respository
