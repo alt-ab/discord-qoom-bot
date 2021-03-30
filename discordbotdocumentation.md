@@ -303,4 +303,10 @@ Now Heroku can actually read and host your code!
 8. From there you want to sign into your Github and connect your repository!
 
 >A good tip to track how Heroku is handling your code, is to run `heroku logs --tail` 
+# Completion
+Congratulations! You have now created your own hosted Discord bot! 
 
+You might be wondering, what are the next steps? 
+Well now that you understand the basics of the Discord framework, you can start implementing more features to your bot!
+
+We hope you enjoyed this tutorial and had fun creating your bot!
