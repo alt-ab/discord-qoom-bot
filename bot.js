@@ -30,9 +30,7 @@ client.once('disconnect', () => {
 
 client.on('message', message => {
 
-    const args1 = message.content.split(/ +/);
-
-    if (args1.includes("qoom")) {
+    if (message.content.includes("qoom")) {
 
         message.react('😄');
 
@@ -51,7 +49,7 @@ client.on('message', message => {
             })
     }
 
-    if (args1.includes("uh") || args1.includes("um") || message.content.includes(" um") || message.content.includes(" uh")) {
+    if (message.content.includes("uh") || message.content.includes("um") || message.content.includes(" um") || message.content.includes(" uh")) {
 
         message.react('👎');
 
@@ -70,7 +68,7 @@ client.on('message', message => {
             })
     }
 
-    if (args1.includes("hi") || args1.includes("hello") || args1.includes("hii")) {
+    if (message.content.includes("hi") || message.content.includes("hello") || message.content.includes("hii")) {
 
         message.react('👋');
 
